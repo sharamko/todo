@@ -22,6 +22,7 @@ const TodoItem = ({ tasksState }) => {
       {tasksState.map((task) => {
         return (
           <li
+            id={task.id}
             key={`${Math.ceil(Date.now() * Math.random())}`}
             className="list-group-item"
           >

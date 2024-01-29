@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { setTasks } from '../store/slice';
+import MyCalendar from './MyCalendar';
 
 const TodoList = () => {
   const dispatch = useDispatch();
@@ -46,11 +47,14 @@ const TodoList = () => {
       {userInfo && (
         <h1 className="mt-4 mb-4 text-center">Задачі {userInfo.name}</h1>
       )}
-      <Link className="btn btn-primary" to={'/todoadd'}>
+      <Link className="btn btn-primary mb-4" to={'/todoadd'}>
         Створити задачу
       </Link>
       {tasksState && tasksState.length > 0 ? (
-        <TodoItem tasksState={tasksState} />
+        <>
+          <MyCalendar events={tasksState} />
+          <TodoItem tasksState={tasksState} />
+        </>
       ) : (
         <p className="fs-4 m-4 text-center">Задач немає...</p>
       )}
