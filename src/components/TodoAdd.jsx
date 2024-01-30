@@ -26,8 +26,10 @@ const TodoAdd = () => {
       userId: userInfo.userId,
       id: `${userInfo.userId}_${Date.now()}`,
     };
-    await setDoc(doc(db, 'tasks', task.id), task);
-    history('/todo');
+    if (inputValue.length > 0) {
+      await setDoc(doc(db, 'tasks', task.id), task);
+      history('/todo');
+    }
   };
 
   return (
